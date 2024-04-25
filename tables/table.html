@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+  <link rel="stylesheet" href="style.css" />
+  <head>
+    <style>
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      table,
+      th,
+      td {
+        border: 1px solid black;
+        padding: 15px;
+        text-align: left;
+      }
+
+      th {
+        background-color: pink;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Таблица студентов</h2>
+
+    <table id="studentsTable">
+      <tr>
+        <th onclick="sortTable(0)">Студент(ФИО)</th>
+        <th onclick="sortTable(2)">Уровень</th>
+        <th onclick="sortTable(2)">Дата рожденья</th>
+        <th onclick="sortTable(2)">Процент знаний</th>
+        <th onclick="sortTable(2)">Город</th>
+      </tr>
+      <tr>
+        <td>Дмитрий Соколов</td>
+        <td>Elementary</td>
+        <td>22.05.2000</td>
+        <td>75%</td>
+        <td>Москва</td>
+      </tr>
+      <tr>
+        <td>Петр Павлов</td>
+        <td>Beginner</td>
+        <td>18.01.1999</td>
+        <td>52%</td>
+        <td>Санкт-Петербург</td>
+      </tr>
+      <tr>
+        <td>Мария Соколова</td>
+        <td>Advanced</td>
+        <td>16.08.2002</td>
+        <td>96%</td>
+        <td>Англия</td>
+      </tr>
+      <tr>
+        <td>Ксения Кузнецова</td>
+        <td>Beginner</td>
+        <td>30.04.1997</td>
+        <td>22%</td>
+        <td>Казань</td>
+      </tr>
+      <tr>
+        <td>Андрей Алексеев</td>
+        <td>Upper-intermediate</td>
+        <td>08.03.2007</td>
+        <td>38%</td>
+        <td>Санкт-Петербург</td>
+      </tr>
+      <tr>
+        <td>Моисей Жуков</td>
+        <td>Advanced</td>
+        <td>01.11.2004</td>
+        <td>66%</td>
+        <td>Украина</td>
+      </tr>
+      <tr>
+        <td>Максим Морозов</td>
+        <td>Upper-intermediate</td>
+        <td>12.12.1998</td>
+        <td>99%</td>
+        <td>Китай</td>
+      </tr>
+      <tr>
+        <td>Егор Алексеев</td>
+        <td>Pre-intermediate></td>
+        <td>07.05.2007</td>
+        <td>78%</td>
+        <td>Санкт-Петербург</td>
+      </tr>
+      <tr>
+        <td>Роман Николаев</td>
+        <td>Beginner</td>
+        <td>30.03.1994</td>
+        <td>82%</td>
+        <td>Москва</td>
+      </tr>
+      <tr>
+        <td>Андрей Алексеев</td>
+        <td>Upper-intermediate</td>
+        <td>08.03.2007</td>
+        <td>38%</td>
+        <td>Санкт-Петербург</td>
+      </tr>
+      <tr>
+        <td>Никита Лебедев</td>
+        <td>Elementary</td>
+        <td>29.11.2001</td>
+        <td>45%</td>
+        <td>Польша</td>
+      </tr>
+    </table>
+
+    <script>
+      function sortTable(n) {
+        var table,
+          rows,
+          switching,
+          i,
+          x,
+          y,
+          shouldSwitch,
+          dir,
+          switchcount = 0;
+        table = document.getElementById("studentsTable");
+        switching = true;
+        dir = "asc";
+        while (switching) {
+          switching = false;
+          rows = table.rows;
+          for (i = 1; i < rows.length - 1; i++) {
+            shouldSwitch = false;
+            x = rows[i].getElementsByTagName("TD")[n];
+            y = rows[i + 1].getElementsByTagName("TD")[n];
+            if (dir == "asc") {
+              if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                shouldSwitch = true;
+                break;
+              }
+            } else if (dir == "desc") {
+              if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                shouldSwitch = true;
+                break;
+              }
+            }
+          }
+          if (shouldSwitch) {
+            rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+            switching = true;
+            switchcount++;
+          } else {
+            if (switchcount == 0 && dir == "asc") {
+              dir = "desc";
+              switching = true;
+            }
+          }
+        }
+      }
+    </script>
+  </body>
+</html>
+
+<form id="studentForm">
+  <h1>Добавить в список</h1>
+  Имя: <input type="text" id="name" /><br />
+  Уровень: <input type="text" id="surname" /><br />
+  Дата рожденья <input type="text" id="date" /><br />
+  Процент знаний <input type="text" id="percentage" /><br />
+  Город<input type="text" id="country" /><br />
+  <input type="button" value="Добавить студента" onclick="addStudent()" />
+</form>
+
+<script>
+  function addStudent() {
+    var table = document.getElementById("studentsTable");
+    var row = table.insertRow(-1);
+    var cell1 = row.insertCell(0);
+    var cell2 = row.insertCell(1);
+    var cell3 = row.insertCell(2);
+    cell1.innerHTML = document.getElementById("name").value;
+    cell2.innerHTML = document.getElementById("level").value;
+    cell3.innerHTML = document.getElementById("Date").value;
+    cell3.innerHTML = document.getElementById("percentage").value;
+    cell3.innerHTML = document.getElementById("country").value;
+  }
+</script>
+<input type="button" value="Удалить студента" onclick="removeStudent()" />
+
+<script>
+  function removeStudent() {
+    var table = document.getElementById("studentsTable");
+    table.deleteRow(-1);
+  }
+</script>

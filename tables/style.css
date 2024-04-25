@@ -1,0 +1,15 @@
+h2 {
+  color: black;
+  text-align: center;
+  font-size: 3rem;
+}
+body {
+  background-color: antiquewhite;
+}
+#studentForm {
+  color: black;
+  font-size: 1.2rem;
+}
+#addstudent {
+  color: aqua;
+}

@@ -1,0 +1,32 @@
+h1 {
+  color: blueviolet;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+body {
+  background-color: papayawhip;
+}
+li {
+  color: darkgreen;
+  text-align: center;
+  font-size: 1.5rem;
+}
+h2 {
+  color: blue;
+  text-align: center;
+  font-size: 2rem;
+}
+h3 {
+  color: brown;
+  text-align: center;
+  font-size: 3rem;
+}
+p {
+  font-size: 1.3rem;
+  width: 60%;
+}
+#p3 {
+  text-align: center;
+  font-size: 1.4rem;
+}

@@ -1,0 +1,16 @@
+h1 {
+  color: black;
+  text-align: center;
+  font-size: 3rem;
+}
+body {
+  background-color: darkkhaki;
+}
+#header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+ul {
+  font-size: 30px;
+}
